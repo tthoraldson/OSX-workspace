@@ -7,8 +7,7 @@ sub main {
   workspace_ascii();
   check_for_updates();
 
-
-  choose( [ 'Press ENTER to continue' ], { prompt => '' } );    # no choice
+  # choose( [ 'Press ENTER to continue' ], { prompt => '' } );    # no choice
 }
 
 sub workspace_ascii {
@@ -17,11 +16,14 @@ sub workspace_ascii {
 }
 
 sub check_for_updates {
-  print "Would you like to check for updates?\n";
+  print "Would you like to start tmux?\n";
   my $array_ref = [ qw( yes no ) ];
-  print $array_ref[1];
   my $choice = choose( $array_ref );
-  print "$choice\n";
+
+  if ($choice eq "yes") {
+    print "Starting TMUX\n";
+    exec('tmux');
+  } 
 }
 
 main();
